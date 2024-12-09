@@ -30,9 +30,31 @@ public class Main {
                     5. Exit the application
                     """
             );
+            System.out.println("Enter a number (1-5): ");
+            int choice = scanner.nextInt();
+                switch (choice) {
+                    case 1:
+                        StudentProcessor obj = new StudentProcessor();
+                        obj.UserInputProcessor();
+                        break;
+                    case 2:
+                        System.out.println("r");
+                        break;
+                    case 3:
+                        System.out.println("u");
+                        break;
+                    case 4:
+                        System.out.println("d");
+                        break;
+                    case 5:
+                        System.out.println("q");
+                        break;
+                    default:
+                        System.out.println("Invalid choice");
+                        break;
+            }
         } else {
             System.out.println("Invalid username or password. Please try again.");
         }
-        scanner.close();
     }
 }
