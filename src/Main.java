@@ -21,7 +21,15 @@ public class Main {
 
         // Validate login credentials
         if (username.equals(correctUsername) && password.equals(correctPassword)) {
-            System.out.println("\nLogin successful! Welcome, " + username + ".");
+            System.out.println("""
+                    \nLogin successful! Select action to continue:
+                    \n1. Create a student id
+                    2. Display the registered students
+                    3. Update student data
+                    4. Delete existing student
+                    5. Exit the application
+                    """
+            );
         } else {
             System.out.println("Invalid username or password. Please try again.");
         }
