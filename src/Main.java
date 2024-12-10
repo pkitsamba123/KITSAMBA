@@ -33,21 +33,24 @@ public class Main {
             System.out.println("Enter a number (1-5): ");
             int choice = scanner.nextInt();
                 switch (choice) {
-                    case 1:
+                    case 1://create student
                         StudentProcessor obj = new StudentProcessor();
                         obj.UserInputProcessor();
                         break;
-                    case 2:
+                    case 2://display registered students
                         System.out.println("r");
                         break;
-                    case 3:
-                        System.out.println("u");
+                    case 3://update existing student
+                        StudentEditor edit = new StudentEditor();
+                        edit.UserUpdate();
                         break;
-                    case 4:
-                        System.out.println("d");
+                    case 4://delete student
+                        DeleteStudent remove = new DeleteStudent();
+                        remove.RemoveStudent();
                         break;
-                    case 5:
-                        System.out.println("q");
+                    case 5://exit application
+                        ExitApplication quit = new ExitApplication();
+                        quit.exit();
                         break;
                     default:
                         System.out.println("Invalid choice");
