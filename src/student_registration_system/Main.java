@@ -1,5 +1,6 @@
 package student_registration_system;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -14,13 +15,25 @@ public class Main {
         String correctUsername = "admin";
         String correctPassword = "root";
 
-        // Prompt user for username
-        System.out.print("username: ");
-        String username = scanner.nextLine();
+        // Validate user name input
+        String username = "";
+        while (username.isEmpty()) {
+            System.out.print("Username: ");
+            username = scanner.nextLine().trim();
+            if (username.isEmpty()) {
+                System.out.println("Username cannot be empty. Please enter a valid username.");
+            }
+        }
 
-        // Prompt user for password
-        System.out.print("Enter your password: ");
-        String password = scanner.nextLine();
+        // Validate password input
+        String password = "";
+        while (password.isEmpty()) {
+            System.out.print("Enter your password: ");
+            password = scanner.nextLine().trim();
+            if (password.isEmpty()) {
+                System.out.println("Password cannot be empty. Please enter a valid password.");
+            }
+        }
 
         // Validate login credentials
         if (username.equals(correctUsername) && password.equals(correctPassword)) {
@@ -28,6 +41,7 @@ public class Main {
 
             int choice;
             do {
+                // Menu options
                 System.out.println("""
                         \nSelect action to continue:
                         1. Create a Student
@@ -36,32 +50,49 @@ public class Main {
                         4. Delete existing student
                         5. Exit the application
                         """);
-                System.out.print("Enter a number (1-5): ");
-                choice = scanner.nextInt();
 
+                // Input validation for menu choice
+                while (true) {
+                    System.out.print("Enter a number (1-5): ");
+                    try {
+                        choice = scanner.nextInt();
+                        if (choice >= 1 && choice <= 5) {
+                            break;  // Valid choice
+                        } else {
+                            System.out.println("Invalid choice. Please enter a number between 1 and 5.");
+                        }
+                    } catch (InputMismatchException e) {
+                        System.out.println("Invalid input. Please enter a valid number.");
+                        scanner.nextLine();  // Clear the invalid input
+                    }
+                }
+
+                // Switch case for menu options
                 switch (choice) {
-                    case 1: // create student
+                    case 1: // Create student
                         studentProcessor.AddStudent();
                         break;
-                    case 2: // display registered students
+                    case 2: // Display registered students
                         studentProcessor.GetStudents();
                         break;
-                    case 3: // update existing student
+                    case 3: // Update student data
                         studentProcessor.EditStudent();
                         break;
-                    case 4: // delete student
+                    case 4: // Delete student
                         studentProcessor.DeleteStudent();
                         break;
-                    case 5: // exit application
+                    case 5: // Exit application
                         quit.exit();
-                        System.out.println("Exiting the application...");
+                        System.out.println("xiting the application...");
                         break;
                     default:
                         System.out.println("Invalid choice. Please enter a number between 1 and 5.");
                 }
-            } while (choice != 5); // Continue until "Exit" is selected
+            } while (choice != 5);  // Continue until "Exit" is selected
         } else {
             System.out.println("Invalid username or password. Please try again.");
         }
+
+        scanner.close();
     }
 }
