@@ -1,17 +1,15 @@
-public class Student {
-    // Fields to store student information
+package student_registration_system;
+public class Student extends User {
     private int id;
     private String name;
     private String email;
 
-    // Constructor to initialize a CreateStudent object
     public Student(int id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
     }
 
-    // Getters for accessing fields
     public int getId() {
         return id;
     }
@@ -24,7 +22,6 @@ public class Student {
         return email;
     }
 
-    // Setters for modifying fields if needed
     public void setId(int id) {
         this.id = id;
     }
@@ -37,7 +34,6 @@ public class Student {
         this.email = email;
     }
 
-    // Method to display student information
     public void displayInfo() {
         System.out.println("Student ID: " + id);
         System.out.println("Student Name: " + name);
